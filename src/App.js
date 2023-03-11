@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Layout from "./components/Layout.js";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/home/Home.js";
+import './App.css'
 
 function App() {
   const [movies, setMovies] = useState();
