@@ -14,14 +14,22 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
     getMovieData(movieId);
   }, []);
 
-  const addReview = async(e) => {
+  const addReview = async (e) => {
     e.preventDefault();
     const rev = revText.current;
-    const reponse = await api.post("/api/v1/reviews", {reviewBody:rev.value, imdbId:movieId});
-    const updatedReviews = [...reviews, {bod:rev.value}];
-    rev.value = "";
-    setReviews(updatedReviews);
-  }
+
+    try {
+      const response = await api.post("/api/v1/reviews", {
+        reviewBody: rev.value,
+        imdbId: movieId,
+      });
+      //const updatedReviews = [...reviews, { body: rev.value }];
+      rev.value = "";
+      //setReviews(updatedReviews);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Container>
@@ -42,7 +50,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
                   <ReviewForm
                     handleSubmit={addReview}
                     revText={revText}
-                    labelText="Write a review"
+                    labelText="Reviews"
                   />
                 </Col>
               </Row>
@@ -56,6 +64,9 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
           {reviews?.map((r) => {
             return (
               <>
+                <Row>
+                  <Col>{r.body}</Col>
+                </Row>
                 <Row>
                   <Col>
                     <hr />
