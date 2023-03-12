@@ -12,7 +12,6 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
 
   useEffect(() => {
     getMovieData(movieId);
-    console.log(reviews)
   }, []);
 
   const addReview = async (e) => {
@@ -28,6 +27,7 @@ const Reviews = ({ getMovieData, movie, reviews, setReviews }) => {
       const updatedReviews = [...reviews, {body:rev.value}];
       rev.value = "";
       setReviews(updatedReviews);
+      
     } catch (err) {
       console.log(err);
     }
