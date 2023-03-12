@@ -10,8 +10,8 @@ import './App.css'
 
 function App() {
   const [movies, setMovies] = useState();
-  const [reviews, setReviews] = useState();
   const [movie, setMovie] = useState();
+  const [reviews, setReviews] = useState();
 
   const getMovies = async () => {
     try {
@@ -27,8 +27,9 @@ function App() {
     try {
       const response = await api.get(`/api/v1/movies/${movieId}`);
       const singleMovie = response.data;
+      console.log(singleMovie)
       setMovie(singleMovie);
-      setReviews(singleMovie.reviews)
+      setReviews(singleMovie.reviewIds)
     } catch (e) {
       console.log(e);
     }
